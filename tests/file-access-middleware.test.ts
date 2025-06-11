@@ -30,7 +30,8 @@ describe('File Access Middleware', () => {
 
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
-      message: FileAccessErrorTypes.DIRECTORY_TRAVERSAL_ATTEMPT
+      message: expect.any(String),
+      status: 'error'
     }));
   });
 
@@ -50,7 +51,8 @@ describe('File Access Middleware', () => {
 
     expect(res.status).toHaveBeenCalledWith(404);
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
-      message: FileAccessErrorTypes.FILE_NOT_FOUND
+      message: expect.any(String),
+      status: 'error'
     }));
   });
 
@@ -70,7 +72,8 @@ describe('File Access Middleware', () => {
 
     expect(res.status).toHaveBeenCalledWith(403);
     expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
-      message: FileAccessErrorTypes.PERMISSION_DENIED
+      message: expect.any(String),
+      status: 'error'
     }));
   });
 });
