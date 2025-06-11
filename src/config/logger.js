@@ -1,14 +1,27 @@
 const winston = require('winston');
 const path = require('path');
+const fs = require('fs');
 
 // Create logs directory if it doesn't exist
 const logDirectory = path.join(process.cwd(), 'logs');
 
 // Ensure the logs directory exists
 try {
-  require('fs').mkdirSync(logDirectory, { recursive: true });
+  fs.mkdirSync(logDirectory, { recursive: true });
 } catch (err) {
   console.error('Could not create logs directory', err);
+}
+
+// Create log files if they don't exist
+const fileRetrievalLogPath = path.join(logDirectory, 'file-retrieval.log');
+const errorLogPath = path.join(logDirectory, 'errors.log');
+
+// Ensure log files exist
+try {
+  fs.writeFileSync(fileRetrievalLogPath, '', { flag: 'a+' });
+  fs.writeFileSync(errorLogPath, '', { flag: 'a+' });
+} catch (err) {
+  console.error('Could not create log files', err);
 }
 
 // Custom log format
@@ -34,13 +47,13 @@ const logger = winston.createLogger({
     
     // File transport for file retrieval logs
     new winston.transports.File({
-      filename: path.join(logDirectory, 'file-retrieval.log'),
+      filename: fileRetrievalLogPath,
       level: 'info'
     }),
     
     // Error log file
     new winston.transports.File({
-      filename: path.join(logDirectory, 'errors.log'),
+      filename: errorLogPath,
       level: 'error'
     })
   ]
