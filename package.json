@@ -1,5 +1,22 @@
 {
+  "name": "cdn-file-server",
+  "version": "1.0.0",
+  "description": "Secure CDN file serving application",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
   "dependencies": {
     "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "jest": "^30.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coverageDirectory": "./coverage",
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
   }
 }
