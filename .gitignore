@@ -1,18 +1,7 @@
 node_modules/
 dist/
 .env
-<<<<<<< HEAD
 __pycache__/
+.vitest-cache/
 *.log
 .DS_Store
-.vscode/
-.idea/
-coverage/
-*.swp
-*.swo
-=======
-*.log
-.DS_Store
-coverage/
-.nyc_output/
->>>>>>> pr-2-parker110-crypto-CDN
